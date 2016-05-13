@@ -1,0 +1,167 @@
+$gray-light: #e0e0e0;
+$gray: #bdbdbd;
+$gray-dark: #757575;
+
+$font-size: 18px;
+$form-y-padding: 5px;
+$form-x-padding: 10px;
+
+* {
+    box-sizing: border-box;
+}
+
+*:before, *:after {
+    box-sizing: inherit;
+}
+
+html {
+    font-family: 'Raleway', serif;
+    font-size: $font-size;
+}
+
+body {
+    margin: 0;
+
+    background: #fafafa;
+}
+
+a {
+    color: #3f51b5;
+
+    text-decoration: none;
+
+    transition: all 0.25s ease;
+
+    &:hover {
+        color: #283593;
+    }
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+header {
+    border-bottom: 1px solid $gray-light;
+
+    background: white;
+}
+
+header .container {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+}
+
+header a {
+    padding: 5px 10px;
+    border: 1px solid black;
+    border-radius: 3px;
+
+    color: black;
+
+    &:hover {
+        background-color: black;
+        color: white;
+    }
+}
+
+header h1 {
+    font-size: 1.2rem;
+}
+
+header h1 svg {
+    margin-top: -2px;  // Vertically centering illusion
+}
+
+.container {
+    width: 700px;
+    margin: 0 auto;
+}
+
+form > div {
+    position: relative;
+
+    svg {
+        position: absolute;
+        top: $form-y-padding + 1px;
+        right: $form-x-padding;
+
+        color: $gray;
+    }
+}
+
+form input {
+    padding: $form-y-padding $form-x-padding;
+    padding-right: $form-x-padding + 18px;  // Accomodate the width of the search icon
+    border: 1px solid $gray-light;
+    border-radius: 3px;
+
+    font-family: 'Raleway';
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+.ball-pulse > div {
+    background-color: rgba(#283593, 0.8);
+}
+
+.loader {
+    letter-spacing: 1px;
+}
+
+.loader-inner {
+    display: inline-block;
+}
+
+.flex-center {
+    display: flex;
+
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.min-height-bar {
+    height: 40px;
+}
+
+h2 {
+    margin: 0;
+    margin-bottom: 0.2rem;
+}
+
+header,
+h1,
+h2,
+h3 {
+    font-family: 'Lato';
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.fade-out {
+  animation-name: fadeOut;
+  animation-fill-mode: both;
+  animation-duration: 0.25s;
+}
+
+.text-muted {
+    color: $gray-dark;
+}

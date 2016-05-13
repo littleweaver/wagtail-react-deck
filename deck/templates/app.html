@@ -1,0 +1,16 @@
+{% load render_bundle from webpack_loader %}
+<!doctype html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <meta name='viewport' content='width=device-width,initial-scale=1'>
+        <link href='https://fonts.googleapis.com/css?family=Lato|Raleway:300' rel='stylesheet' type='text/css'>
+        <title>Wagtail CMS + React</title>
+    </head>
+
+    <body>
+        <span id='app'></span>
+
+        {% render_bundle 'main' %}
+    </body>
+</html>
