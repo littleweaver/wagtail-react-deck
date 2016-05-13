@@ -11,6 +11,7 @@ import { render } from 'react-dom'
 import { Router, IndexRedirect, Route, browserHistory } from 'react-router'
 
 import App from './components/App'
+import Slide from './components/Slide'
 
 import './styles.scss'
 
@@ -23,6 +24,10 @@ class NotFound extends Component {
 render(
     <Router history={browserHistory}>
         <Route path="/" component={App}>
+            <IndexRedirect to="slide/1/" />
+
+            <Route path="slide/:ordering" component={Slide} />
+
             <Route path="*" component={NotFound} />
         </Route>
     </Router>

@@ -5,6 +5,7 @@ import { Link, browserHistory } from 'react-router'
 import Loader from './Loader'
 
 const pageFields = [
+    'title',
     'speaker_notes',
     'contents',
     'display_weaver',
@@ -12,6 +13,11 @@ const pageFields = [
     'centered_slide',
     'ordering',
 ]
+
+const sortPages = (a, b) => a.ordering - b.ordering
+
+const leftKeyCode = 37
+const rightKeyCode = 39
 
 class App extends Component {
     constructor(props) {
@@ -33,6 +39,21 @@ class App extends Component {
                 }
             })
             .then(this.handlePagesIndex.bind(this))
+
+        document.addEventListener('keydown', this.handleKeydown.bind(this))
+    }
+
+    handleKeydown(event) {
+        const currentSlide = parseInt(this.props.params.ordering)
+
+        let nextSlide = currentSlide
+        if (event.keyCode === rightKeyCode) {
+            nextSlide = Math.min(currentSlide + 1, this.state.pages.length)
+        } else if (event.keyCode === leftKeyCode) {
+            nextSlide = Math.max(currentSlide - 1, 1)
+        }
+
+        browserHistory.push(`/slide/${nextSlide}/`)
     }
 
     handlePagesIndex(response) {
@@ -50,7 +71,7 @@ class App extends Component {
 
         this.setState({
             loading: this.state.loading - 1,
-            pages: this.state.pages.concat(pages),
+            pages: this.state.pages.concat(pages).sort(sortPages),
         })
     }
 
@@ -66,7 +87,7 @@ class App extends Component {
 
         this.setState({
             loading: this.state.loading - 1,
-            pages: this.state.pages.concat(fetchedPage),
+            pages: this.state.pages.concat(fetchedPage).sort(sortPages),
         })
     }
 
@@ -104,6 +125,7 @@ class App extends Component {
             loading: this.state.loading + count,
         })
     }
+
     render() {
         const { children } = this.props
         const childProps = {

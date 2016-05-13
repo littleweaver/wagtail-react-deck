@@ -1,16 +1,11 @@
-$gray-light: #e0e0e0;
-$gray: #bdbdbd;
-$gray-dark: #757575;
-
-$font-size: 18px;
-$form-y-padding: 5px;
-$form-x-padding: 10px;
+$font-size: 2rem;
 
 * {
     box-sizing: border-box;
 }
 
-*:before, *:after {
+*:before,
+*:after {
     box-sizing: inherit;
 }
 
@@ -21,8 +16,22 @@ html {
 
 body {
     margin: 0;
+}
 
-    background: #fafafa;
+header,
+h1,
+h2,
+h3 {
+    margin: 0;
+
+    font-family: 'Lato';
+}
+
+header {
+    border-bottom: 0.15rem solid lighten(#171512, 20%);
+    padding-bottom: 0.2rem;
+    margin: 2vh 10vw;
+    margin-right: 20vw;
 }
 
 a {
@@ -42,75 +51,6 @@ img {
     height: auto;
 }
 
-.text-center {
-    text-align: center;
-}
-
-header {
-    border-bottom: 1px solid $gray-light;
-
-    background: white;
-}
-
-header .container {
-    display: flex;
-
-    justify-content: space-between;
-    align-items: center;
-
-    padding-top: 0.4rem;
-    padding-bottom: 0.4rem;
-}
-
-header a {
-    padding: 5px 10px;
-    border: 1px solid black;
-    border-radius: 3px;
-
-    color: black;
-
-    &:hover {
-        background-color: black;
-        color: white;
-    }
-}
-
-header h1 {
-    font-size: 1.2rem;
-}
-
-header h1 svg {
-    margin-top: -2px;  // Vertically centering illusion
-}
-
-.container {
-    width: 700px;
-    margin: 0 auto;
-}
-
-form > div {
-    position: relative;
-
-    svg {
-        position: absolute;
-        top: $form-y-padding + 1px;
-        right: $form-x-padding;
-
-        color: $gray;
-    }
-}
-
-form input {
-    padding: $form-y-padding $form-x-padding;
-    padding-right: $form-x-padding + 18px;  // Accomodate the width of the search icon
-    border: 1px solid $gray-light;
-    border-radius: 3px;
-
-    font-family: 'Raleway';
-    font-size: 1rem;
-    font-weight: 300;
-}
-
 .ball-pulse > div {
     background-color: rgba(#283593, 0.8);
 }
@@ -123,45 +63,19 @@ form input {
     display: inline-block;
 }
 
-.flex-center {
-    display: flex;
+.weaver {
+    position: absolute;
+    top: 0;
+    right: 1rem;
 
-    align-items: flex-end;
-    justify-content: center;
+    width: 15vw;
+    height: auto;
 }
 
-.min-height-bar {
-    height: 40px;
+.slide-contents {
+    margin-left: 10vw;
 }
 
-h2 {
-    margin: 0;
-    margin-bottom: 0.2rem;
-}
-
-header,
-h1,
-h2,
-h3 {
-    font-family: 'Lato';
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-  }
-}
-
-.fade-out {
-  animation-name: fadeOut;
-  animation-fill-mode: both;
-  animation-duration: 0.25s;
-}
-
-.text-muted {
-    color: $gray-dark;
+p {
+    margin: 0.5rem 0;
 }
