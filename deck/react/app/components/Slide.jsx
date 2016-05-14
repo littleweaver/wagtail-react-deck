@@ -37,8 +37,22 @@ Field.code = function(value) {
 }
 
 class Slide extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {}
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const slide = nextProps.pages.find(page => page.ordering >= parseInt(nextProps.params.ordering))
+        this.setState({
+            slide,
+        })
+
+        document.title = `${slide.ordering} | ${slide.title}`
+    }
+
     render() {
-        const slide = this.props.pages.find(page => page.ordering >= parseInt(this.props.params.ordering))
+        const slide = this.state.slide
         if (!slide) {
             return <Loader />
         }
