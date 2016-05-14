@@ -14,6 +14,7 @@ class Slide(Page):
         ('paragraph', blocks.RichTextBlock(icon='pilcrow')),
         ('image', ImageChooserBlock(icon='image')),
         ('embed', blocks.RawHTMLBlock(icon='code')),
+        ('code', blocks.RawHTMLBlock(icon='code')),
     ])
 
     speaker_notes = RichTextField(blank=True, null=True)

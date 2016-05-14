@@ -24,6 +24,14 @@ Field.heading = function(value) {
     return <h1>{value}</h1>
 }
 
+Field.code = function(value) {
+    return (
+        <pre>
+            <code dangerouslySetInnerHTML={{ __html: value}} />
+        </pre>
+    )
+}
+
 class Slide extends Component {
     render() {
         const slide = this.props.pages.find(page => page.ordering >= parseInt(this.props.params.ordering))
