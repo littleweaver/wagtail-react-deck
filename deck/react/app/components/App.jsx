@@ -44,15 +44,20 @@ class App extends Component {
     }
 
     handleKeydown(event) {
-        const currentSlide = parseInt(this.props.params.ordering)
-
-        let nextSlide = currentSlide
         if (event.keyCode === rightKeyCode) {
-            nextSlide = Math.min(currentSlide + 1, this.state.pages.length)
+            this.changeSlide(1)
         } else if (event.keyCode === leftKeyCode) {
-            nextSlide = Math.max(currentSlide - 1, 1)
+            this.changeSlide(-1)
         }
+    }
 
+    changeSlide(offset) {
+        const currentSlide = parseInt(this.props.params.ordering)
+        const orderings = this.state.pages.map(page => page.ordering)
+        const maxOrdering = Math.max.apply(null, orderings)
+        const minOrdering = Math.min.apply(null, orderings)
+
+        const nextSlide = Math.max(Math.min(currentSlide + offset, maxOrdering), minOrdering)
         browserHistory.push(`/slide/${nextSlide}/`)
     }
 
