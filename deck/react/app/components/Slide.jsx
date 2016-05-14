@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
+import { highlightAuto } from 'highlight.js'
 
 import Loader from './Loader'
 import Weaver from './Weaver'
+
+import 'highlight.js/styles/github-gist.css'
 
 function Header({ display_title, title }) {
     if (!display_title) {
@@ -25,9 +28,10 @@ Field.heading = function(value) {
 }
 
 Field.code = function(value) {
+    const html = highlightAuto(value)
     return (
         <pre>
-            <code dangerouslySetInnerHTML={{ __html: value}} />
+            <code dangerouslySetInnerHTML={{ __html: html.value}} />
         </pre>
     )
 }
