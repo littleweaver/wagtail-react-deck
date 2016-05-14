@@ -16,7 +16,7 @@ function Header({ display_title, title }) {
 }
 
 let Field = {}
-Field.paragraph = function(value) {
+Field.paragraph = Field.embed = function(value) {
     return <div dangerouslySetInnerHTML={{ __html: value}} />
 }
 
@@ -31,14 +31,19 @@ class Slide extends Component {
             return <Loader />
         }
 
+        let className="slide-contents"
+        if (slide.centered_slide) {
+            className += " slide-contents--centered"
+        }
+
         return (
             <div>
                 <Weaver {...slide} />
                 <Header {...slide} />
 
-                <div className="slide-contents">
+                <div className={className}>
                     {slide.contents.map((field, index) =>
-                        <span key={index}>
+                        <span key={index} className="field">
                             {Field[field.type](field.value)}
                         </span>
                     )}

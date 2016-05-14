@@ -13,6 +13,7 @@ class Slide(Page):
         ('heading', blocks.CharBlock(icon='title', classname="heading")),
         ('paragraph', blocks.RichTextBlock(icon='pilcrow')),
         ('image', ImageChooserBlock(icon='image')),
+        ('embed', blocks.RawHTMLBlock(icon='code')),
     ])
 
     speaker_notes = RichTextField(blank=True, null=True)
