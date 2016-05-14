@@ -18,6 +18,7 @@ const sortPages = (a, b) => a.ordering - b.ordering
 
 const leftKeyCode = 37
 const rightKeyCode = 39
+const oKeyCode = 79
 
 class App extends Component {
     constructor(props) {
@@ -41,6 +42,13 @@ class App extends Component {
             .then(this.handlePagesIndex.bind(this))
 
         document.addEventListener('keydown', this.handleKeydown.bind(this))
+        window.addEventListener('message', this.handleMessage.bind(this))
+    }
+
+    handleMessage(event) {
+        if (event.data.nextSlide) {
+            browserHistory.push(`/slide/${event.data.nextSlide}/`)
+        }
     }
 
     handleKeydown(event) {
@@ -48,7 +56,13 @@ class App extends Component {
             this.changeSlide(1)
         } else if (event.keyCode === leftKeyCode) {
             this.changeSlide(-1)
+        } else if (event.keyCode === oKeyCode) {
+            this.openSpeakerNotes()
         }
+    }
+
+    openSpeakerNotes() {
+        this.speakerWindow = window.open(window.location.href)
     }
 
     changeSlide(offset) {
@@ -59,6 +73,11 @@ class App extends Component {
 
         const nextSlide = Math.max(Math.min(currentSlide + offset, maxOrdering), minOrdering)
         browserHistory.push(`/slide/${nextSlide}/`)
+
+        const target = window.opener || this.speakerWindow
+        if (target) {
+            target.postMessage({ nextSlide, }, '*')
+        }
     }
 
     handlePagesIndex(response) {
