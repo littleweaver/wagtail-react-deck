@@ -48,8 +48,15 @@ class Slide extends Component {
             className += " slide-contents--centered"
         }
 
+        const speakerNotes = window.opener &&
+            <div
+                className="speaker-notes"
+                dangerouslySetInnerHTML={{ __html: slide.speaker_notes }}
+            />
+
         return (
             <div>
+                {speakerNotes}
                 <Weaver {...slide} />
                 <Header {...slide} />
 

@@ -102,3 +102,16 @@ p {
     justify-content: center;
     align-items: center;
 }
+
+.speaker-notes {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    border-top: 1px solid black;
+
+    background: white;
+
+    font-size: 0.75rem;
+}
