@@ -36,6 +36,19 @@ Field.code = function(value) {
     )
 }
 
+Field.image = function(value, images) {
+    const image = images.find(image => image.id === value)
+    if (!image) {
+        return <Loader />
+    }
+
+    return (
+        <img
+            src={image.original_url}
+        />
+    )
+}
+
 class Slide extends Component {
     constructor(props) {
         super(props)
@@ -44,6 +57,10 @@ class Slide extends Component {
 
     componentWillReceiveProps(nextProps) {
         const slide = nextProps.pages.find(page => page.ordering >= parseInt(nextProps.params.ordering))
+        if (!slide) {
+            return
+        }
+
         this.setState({
             slide,
         })
@@ -77,7 +94,7 @@ class Slide extends Component {
                 <div className={className}>
                     {slide.contents.map((field, index) =>
                         <span key={index} className="field">
-                            {Field[field.type](field.value)}
+                            {Field[field.type](field.value, this.props.images)}
                         </span>
                     )}
                 </div>
