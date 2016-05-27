@@ -20,6 +20,13 @@ const leftKeyCode = 37
 const rightKeyCode = 39
 const oKeyCode = 79
 
+// Preload an image, hidden from the user. This speeds up transitions
+// between slides.
+function preloadImage(url) {
+    const img = new Image()
+    img.src = url
+}
+
 class App extends Component {
     constructor(props) {
         super(props)
@@ -127,6 +134,8 @@ class App extends Component {
             loading: this.state.loading - 1,
             images: this.state.images.concat(response.data),
         })
+
+        preloadImage(response.data.original_url)
     }
 
     fireImageRequests(imageFields) {
