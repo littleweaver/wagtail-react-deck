@@ -34,6 +34,13 @@ header {
     margin-right: 20vw;
 }
 
+.slide--centered header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
 a {
     color: #3f51b5;
 

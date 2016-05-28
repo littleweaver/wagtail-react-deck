@@ -86,9 +86,11 @@ class Slide extends Component {
             return <Loader />
         }
 
-        let className="slide-contents"
+        let innerClassName = "slide-contents"
+        let outerClassName = "slide"
         if (slide.centered_slide) {
-            className += " slide-contents--centered"
+            innerClassName += " slide-contents--centered"
+            outerClassName += " slide--centered"
         }
 
         const speakerNotes = window.opener &&
@@ -98,12 +100,12 @@ class Slide extends Component {
             />
 
         return (
-            <div>
+            <div className={outerClassName}>
                 {speakerNotes}
                 <Weaver {...slide} />
                 <Header {...slide} />
 
-                <div className={className}>
+                <div className={innerClassName}>
                     {slide.contents.map((field, index) =>
                         <span key={index} className="field">
                             {Field[field.type](field.value, this.props.images)}
