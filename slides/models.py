@@ -12,6 +12,7 @@ class Slide(Page):
     contents = StreamField([
         ('heading', blocks.CharBlock(icon='title', classname="heading")),
         ('paragraph', blocks.RichTextBlock(icon='pilcrow')),
+        ('flex_paragraph', blocks.RichTextBlock(icon='pilcrow')),
         ('image', ImageChooserBlock(icon='image')),
         ('embed', blocks.RawHTMLBlock(icon='code')),
         ('code', blocks.RawHTMLBlock(icon='code')),
