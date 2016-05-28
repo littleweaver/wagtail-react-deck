@@ -93,6 +93,10 @@ class Slide extends Component {
             outerClassName += " slide--centered"
         }
 
+        if (slide.display_weaver) {
+            outerClassName += " slide--has-weaver"
+        }
+
         const speakerNotes = window.opener &&
             <div
                 className="speaker-notes"
