@@ -52,6 +52,10 @@ img {
     height: auto;
 }
 
+li:not(:last-child) {
+    margin-bottom: 0.5em;
+}
+
 .ball-pulse > div {
     background-color: rgba(#283593, 0.8);
 }
