@@ -18,7 +18,7 @@ function Header({ display_title, title }) {
     )
 }
 
-let Field = {}
+const Field = {}
 Field.paragraph = Field.embed = function(value) {
     return <div dangerouslySetInnerHTML={{ __html: value}} />
 }
