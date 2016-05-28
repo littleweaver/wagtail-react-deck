@@ -61,6 +61,19 @@ Field.image = function(value, images) {
     )
 }
 
+function getSlideClassName(base, slide) {
+    const classNames = [base]
+    if (slide.centered_slide) {
+        classNames.push(`${base}--centered`)
+    }
+
+    if (slide.display_weaver) {
+        classNames.push(`${base}--has-weaver`)
+    }
+
+    return classNames.join(' ')
+}
+
 class Slide extends Component {
     constructor(props) {
         super(props)
@@ -86,17 +99,6 @@ class Slide extends Component {
             return <Loader />
         }
 
-        let innerClassName = "slide-contents"
-        let outerClassName = "slide"
-        if (slide.centered_slide) {
-            innerClassName += " slide-contents--centered"
-            outerClassName += " slide--centered"
-        }
-
-        if (slide.display_weaver) {
-            outerClassName += " slide--has-weaver"
-        }
-
         const speakerNotes = window.opener &&
             <div
                 className="speaker-notes"
@@ -104,12 +106,12 @@ class Slide extends Component {
             />
 
         return (
-            <div className={outerClassName}>
+            <div className={getSlideClassName('slide', slide)}>
                 {speakerNotes}
                 <Weaver {...slide} />
                 <Header {...slide} />
 
-                <div className={innerClassName}>
+                <div className={getSlideClassName('slide-contents', slide)}>
                     {slide.contents.map((field, index) =>
                         <span key={index} className="field">
                             {Field[field.type](field.value, this.props.images)}
