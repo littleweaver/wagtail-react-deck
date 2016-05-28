@@ -8,14 +8,21 @@ from wagtail.wagtailimages.blocks import ImageChooserBlock
 
 from . import image
 
+
+base_stream_blocks = [
+    ('heading', blocks.CharBlock(icon='title', classname="heading")),
+    ('paragraph', blocks.RichTextBlock(icon='pilcrow')),
+    ('image', ImageChooserBlock(icon='image')),
+    ('embed', blocks.RawHTMLBlock(icon='site', label='Raw HTML')),
+    ('code', blocks.RawHTMLBlock(icon='code', label='Highlighted Code')),
+]
+
+
 class Slide(Page):
-    contents = StreamField([
-        ('heading', blocks.CharBlock(icon='title', classname="heading")),
-        ('paragraph', blocks.RichTextBlock(icon='pilcrow')),
-        ('flex_paragraph', blocks.RichTextBlock(icon='pilcrow')),
-        ('image', ImageChooserBlock(icon='image')),
-        ('embed', blocks.RawHTMLBlock(icon='code')),
-        ('code', blocks.RawHTMLBlock(icon='code')),
+    contents = StreamField(base_stream_blocks + [
+        ('flex_group', blocks.StreamBlock(base_stream_blocks,
+            icon='doc-empty',
+            label='Flex Group')),
     ])
 
     speaker_notes = RichTextField(blank=True, null=True)

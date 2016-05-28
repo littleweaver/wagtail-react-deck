@@ -19,22 +19,21 @@ function Header({ display_title, title }) {
 }
 
 let Field = {}
-Field.flex_paragraph = Field.paragraph = Field.embed = function(value) {
+Field.paragraph = Field.embed = function(value) {
     return <div dangerouslySetInnerHTML={{ __html: value}} />
 }
 
-Field.flex_paragraph_group = function(value) {
+Field.flex_group = function(value, images) {
     return (
         <div className="flex">
             {value.map((field, index) =>
                     <span key={index} className="field">
-                        {Field.flex_paragraph(field.value)}
+                        {Field[field.type](field.value, images)}
                     </span>
             )}
         </div>
     )
 }
-
 
 Field.heading = function(value) {
     return <h1>{value}</h1>
@@ -98,26 +97,6 @@ class Slide extends Component {
                 dangerouslySetInnerHTML={{ __html: slide.speaker_notes }}
             />
 
-
-        const contents = slide.contents.reduce((acc, field) => {
-            if (field.type !== 'flex_paragraph') {
-                return acc.concat(field)
-            }
-
-            if (acc.length === 0 || acc[acc.length - 1].type !== 'flex_paragraph_group') {
-                return acc.concat({
-                    type: 'flex_paragraph_group',
-                    value: [field],
-                })
-            }
-
-            const copy = acc.slice(0)
-            const tail = copy.pop()
-            tail.value = tail.value.concat(field)
-            return copy.concat(tail)
-        }, [])
-        console.log(contents)
-
         return (
             <div>
                 {speakerNotes}
@@ -125,7 +104,7 @@ class Slide extends Component {
                 <Header {...slide} />
 
                 <div className={className}>
-                    {contents.map((field, index) =>
+                    {slide.contents.map((field, index) =>
                         <span key={index} className="field">
                             {Field[field.type](field.value, this.props.images)}
                         </span>
