@@ -135,4 +135,8 @@ p {
     background: white;
 
     font-size: 0.75rem;
+
+    &:hover {
+        background: rgba(white, 0.6);
+    }
 }
