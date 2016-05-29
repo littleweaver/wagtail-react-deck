@@ -144,3 +144,14 @@ p {
         background: rgba(white, 0.6);
     }
 }
+
+.counter {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 0.5rem;
+
+    color: #ccc;
+
+    font-size: 0.6rem;
+}

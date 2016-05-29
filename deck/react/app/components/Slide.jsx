@@ -119,6 +119,10 @@ class Slide extends Component {
                         </span>
                     )}
                 </div>
+
+                <div className="counter">
+                    {this.props.params.ordering} of {this.props.pages.length}
+                </div>
             </div>
         )
     }
