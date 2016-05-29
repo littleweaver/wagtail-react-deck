@@ -5,6 +5,7 @@ import Loader from './Loader'
 import Weaver from './Weaver'
 
 import 'highlight.js/styles/github-gist.css'
+const languages = ['python', 'jsx', 'bash', 'json']
 
 function Header({ display_title, title }) {
     if (!display_title) {
@@ -40,7 +41,7 @@ Field.heading = function(value) {
 }
 
 Field.code = function(value) {
-    const html = highlightAuto(value)
+    const html = highlightAuto(value, languages)
     return (
         <pre>
             <code dangerouslySetInnerHTML={{ __html: html.value}} />
