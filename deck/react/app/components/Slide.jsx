@@ -5,7 +5,7 @@ import Loader from './Loader'
 import Weaver from './Weaver'
 
 import 'highlight.js/styles/github-gist.css'
-const languages = ['python', 'jsx', 'bash', 'json']
+const languages = ['python', 'jsx', 'bash', 'json', 'html']
 
 function Header({ display_title, title }) {
     if (!display_title) {
