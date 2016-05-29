@@ -44,6 +44,7 @@ class App extends Component {
                     type: 'slides.Slide',
                     fields: pageFields.join(','),
                     order: 'ordering',
+                    limit: 1000,
                 }
             })
             .then(this.handlePagesIndex.bind(this))

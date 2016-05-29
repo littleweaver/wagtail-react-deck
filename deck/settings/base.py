@@ -141,6 +141,7 @@ MEDIA_URL = '/media/'
 
 WAGTAIL_SITE_NAME = "deck"
 WAGTAILAPI_BASE_URL = os.environ.get('WAGTAILAPI_BASE_URL', 'http://localhost')
+WAGTAILAPI_LIMIT_MAX = 1000
 
 
 # Webpack Loader Configuration
