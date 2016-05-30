@@ -1,4 +1,4 @@
-$font-size: 2rem;
+$font-size: 3vw;
 
 * {
     box-sizing: border-box;
@@ -30,11 +30,16 @@ h3 {
 
 header {
     border-bottom: 0.15rem solid lighten(#171512, 20%);
-    margin: 2vh 10vw;
+    margin: 4vh 5vw;
 }
 
 header h1 {
-    font-size: 1.5rem;
+    font-size: 5vw;
+}
+
+pre {
+    font-size: 0.8rem;
+    line-height: 1;
 }
 
 .slide--has-weaver header {
@@ -61,8 +66,10 @@ a {
 }
 
 img {
-    max-width: 100%;
+    width: 50vw;
+    max-width: 75vw;
     height: auto;
+    max-height: 75vh;
 }
 
 li:not(:last-child) {
@@ -113,9 +120,14 @@ p {
 }
 
 .slide-contents--centered svg {
-    height: 30vh;
+    height: 60vh;
     width: auto;
-    max-width: 60vmin;
+    max-width: 75vw;
+}
+
+.flex svg {
+    height: 40vh;
+    max-width: 50vw;
 }
 
 .flex {
@@ -153,5 +165,5 @@ p {
 
     color: #ccc;
 
-    font-size: 0.6rem;
+    font-size: 2vw;
 }
