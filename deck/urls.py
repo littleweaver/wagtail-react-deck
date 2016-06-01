@@ -10,7 +10,7 @@ from wagtail.wagtailimages import urls as wagtailimage_urls
 from wagtail.contrib.wagtailapi import urls as wagtailapi_urls
 
 from search import views as search_views
-from .views import counter
+from .views import decoupled_counter, counter
 
 
 urlpatterns = [
