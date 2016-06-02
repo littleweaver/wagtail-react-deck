@@ -57,7 +57,7 @@ Field.image = function(value, images) {
 
     return (
         <img
-            src={image.original_url}
+            src={image.file}
         />
     )
 }
