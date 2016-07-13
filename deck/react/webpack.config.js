@@ -17,6 +17,7 @@ var common = {
     },
 
     resolve: {
+        alias: { '~': __dirname + '/app' },
         extensions: ['', '.js', '.jsx', '.json', '.scss'],
         modulesDirectories: ['node_modules']
     },

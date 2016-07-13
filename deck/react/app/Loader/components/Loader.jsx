@@ -1,6 +1,7 @@
 import React from 'react'
 
-import './loaders.css'
+import '~/Loader/styles/styles.scss'
+
 
 export default function Loader({ loading }) {
     const className = loading ? "loader" : "loader fade-out"

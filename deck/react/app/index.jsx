@@ -10,8 +10,8 @@ import React, { Component } from 'react'
 import { render } from 'react-dom'
 import { Router, IndexRedirect, Route, browserHistory } from 'react-router'
 
-import App from './components/App'
-import Slide from './components/Slide'
+import App from './App/components/App'
+import Slide from '~/Slide/components/Slide'
 
 import './styles.scss'
 

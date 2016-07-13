@@ -1,66 +1,32 @@
 import React, { Component } from 'react'
-import { highlightAuto } from 'highlight.js'
 
-import Loader from './Loader'
-import Weaver from './Weaver'
+import Loader from '~/Loader/components/Loader'
+import CodeField from '~/Slide/components/CodeField'
+import EmbedField from '~/Slide/components/EmbedField'
+import FlexGroupField from '~/Slide/components/FlexGroupField'
+import HeadingField from '~/Slide/components/HeadingField'
+import ImageField from '~/Slide/components/ImageField'
+import ParagraphField from '~/Slide/components/ParagraphField'
+import Title from '~/Slide/components/Title'
+import Weaver from '~/Weaver/components/Weaver'
 
-import 'highlight.js/styles/github-gist.css'
-const languages = ['python', 'jsx', 'bash', 'json', 'html']
 
-function Header({ display_title, title }) {
-    if (!display_title) {
-        return null
-    }
-
-    return (
-        <header>
-            <h1>{title}</h1>
-        </header>
-    )
+const FIELDS = {
+    code: CodeField,
+    embed: EmbedField,
+    flex_group: FlexGroupField,
+    heading: HeadingField,
+    image: ImageField,
+    paragraph: ParagraphField,
 }
 
-const Field = {}
-Field.paragraph = Field.embed = function(value) {
-    return <div dangerouslySetInnerHTML={{ __html: value}} />
+
+function getField(fieldType) {
+    if (!FIELDS.hasOwnProperty(fieldType))
+        throw 'Unknown fieldType: ' + fieldType
+    return FIELDS[fieldType]
 }
 
-Field.flex_group = function(value, images) {
-    return (
-        <div className="flex">
-            {value.map((field, index) =>
-                    <span key={index} className="field">
-                        {Field[field.type](field.value, images)}
-                    </span>
-            )}
-        </div>
-    )
-}
-
-Field.heading = function(value) {
-    return <h1>{value}</h1>
-}
-
-Field.code = function(value) {
-    const html = highlightAuto(value, languages)
-    return (
-        <pre>
-            <code dangerouslySetInnerHTML={{ __html: html.value}} />
-        </pre>
-    )
-}
-
-Field.image = function(value, images) {
-    const image = images.find(image => image.id === value)
-    if (!image) {
-        return <Loader />
-    }
-
-    return (
-        <img
-            src={image.file}
-        />
-    )
-}
 
 function getSlideClassName(base, slide) {
     const classNames = [base]
@@ -74,6 +40,7 @@ function getSlideClassName(base, slide) {
 
     return classNames.join(' ')
 }
+
 
 class Slide extends Component {
     constructor(props) {
@@ -110,12 +77,16 @@ class Slide extends Component {
             <div className={getSlideClassName('slide', slide)}>
                 {speakerNotes}
                 <Weaver {...slide} />
-                <Header {...slide} />
+                <Title {...slide} />
 
                 <div className={getSlideClassName('slide-contents', slide)}>
                     {slide.contents.map((field, index) =>
                         <span key={index} className="field">
-                            {Field[field.type](field.value, this.props.images)}
+                            {getField(field.type)({
+                                value: field.value,
+                                images: this.props.images,
+                                getField,
+                            })}
                         </span>
                     )}
                 </div>

@@ -2,7 +2,6 @@ import axios from 'axios'
 import React, { Component, cloneElement } from 'react'
 import { Link, browserHistory } from 'react-router'
 
-import Loader from './Loader'
 
 const pageFields = [
     'title',
