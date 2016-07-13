@@ -9,7 +9,6 @@ from wagtail.wagtailcore import urls as wagtail_urls
 from wagtail.wagtailimages import urls as wagtailimage_urls
 from wagtail.contrib.wagtailapi import urls as wagtailapi_urls
 
-from search import views as search_views
 from .views import decoupled_counter, counter
 
 
@@ -18,8 +17,6 @@ urlpatterns = [
 
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
-
-    url(r'^search/$', search_views.search, name='search'),
 
     url(r'^api/', include(wagtailapi_urls)),
     url(r'^wagtail/', include(wagtail_urls)),
