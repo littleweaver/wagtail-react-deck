@@ -12,8 +12,8 @@ slides and a front-end to render them with React. You’re “welcome”.
 
 ```
 $ mkvirtualenv --python=python3 wagtail-react-deck
-$ git clone https://github.com/emilyhorsman/wagtail-react-deck.git
-$ cd wagtail-react-blog
+$ git clone https://github.com/littleweaver/wagtail-react-deck.git
+$ cd wagtail-react-deck
 $ pip install -r requirements.txt
 $ ./manage.py migrate
 $ ./manage.py runserver
