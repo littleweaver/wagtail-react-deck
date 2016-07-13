@@ -6,7 +6,7 @@ export default function FlexGroupField({ value, images, getField }) {
         <div className="flex">
             {value.map((field, index) =>
                 <span key={index} className="field">
-                    {getField(field.type)(field.value, images)}
+                    {getField(field.type)({value: field.value, images})}
                 </span>
             )}
         </div>
